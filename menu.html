@@ -1,1 +1,122 @@
-deneme
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #36393f;
+        }
+
+        .sidebar {
+            width: 72px;
+            height: 100vh;
+            background-color: #2f3136;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10px;
+            justify-content: space-between;
+        }
+
+        .icon-container {
+            width: 50px;
+            height: 50px;
+            background-color: #36393f;
+            border-radius: 50%;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #b9bbbe;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .icon-container:hover {
+            background-color: #7289da;
+            transform: scale(1.1);
+        }
+
+        .tooltip {
+            visibility: hidden;
+            width: 180px;
+            background: #2f3136;
+            color: white;
+            text-align: left;
+            border-radius: 8px;
+            padding: 10px;
+            position: absolute;
+            top: 50%;
+            left: 90px;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tooltip::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -6px;
+            transform: translateY(-50%);
+            border: 6px solid transparent;
+            border-right-color: #2f3136;
+        }
+
+        .icon-container:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        #username {
+            color: #b9bbbe;
+        }
+
+        /* Other styles for the menu (buttons, layout, etc.) */
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <!-- Profil İkonu -->
+        <div class="icon-container">
+            <i class="fas fa-user"></i>
+            <div class="tooltip">
+                <strong>Kullanıcı Adı:</strong> <span id="username">Misafir</span>
+            </div>
+        </div>
+
+        <!-- Diğer Menü Öğeleri -->
+        <div class="icon-container">
+            <i class="fas fa-compass"></i>
+            <div class="tooltip">
+                <strong>Keşfet:</strong> Sunucuları keşfedin.
+            </div>
+        </div>
+
+        <div class="icon-container">
+            <i class="fas fa-cog"></i>
+            <div class="tooltip">
+                <strong>Ayarlar:</strong> Ayarları düzenleyin.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Kullanıcı adını güncelleme fonksiyonu
+        function updateUsername(username) {
+            document.getElementById('username').textContent = username;
+        }
+
+        // Örnek olarak kullanıcı adı "Ahmet" olarak güncelleniyor
+        updateUsername('Ahmet');
+    </script>
+</body>
+</html>
