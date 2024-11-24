@@ -72,13 +72,6 @@
         #login-container, #register-container {
             display: none;
         }
-
-        .gmail-text {
-            font-size: 12px;
-            color: #555;
-            margin-top: 5px;
-        }
-
     </style>
 </head>
 <body>
@@ -90,10 +83,7 @@
                 <img src="placeholder.png" alt="Profil Fotoğrafı" class="profile-preview" id="profile-preview">
                 <input type="file" id="profile-photo" accept="image/*">
                 <input type="text" id="new-username" placeholder="Yeni Kullanıcı Adı" required>
-                
-                <!-- Gmail ile kayıt için metin kutusu ekledik -->
                 <input type="email" id="gmail" placeholder="Gmail Adresi" required>
-                
                 <input type="password" id="new-password" placeholder="Yeni Şifre" required>
                 <button type="submit" class="btn">Kayıt Ol</button>
             </form>
@@ -107,10 +97,7 @@
             <h2>Giriş Yap</h2>
             <form id="login-form">
                 <input type="text" id="username" placeholder="Kullanıcı Adı" required>
-                
-                <!-- Gmail ile giriş için metin kutusu ekledik -->
                 <input type="email" id="login-gmail" placeholder="Gmail Adresi" required>
-                
                 <input type="password" id="password" placeholder="Şifre" required>
                 <button type="submit" class="btn">Giriş Yap</button>
             </form>
@@ -126,10 +113,8 @@
             const showRegister = document.getElementById("show-register");
             const profilePhotoInput = document.getElementById("profile-photo");
             const profilePreview = document.getElementById("profile-preview");
-            const gmailInput = document.getElementById("gmail");
-            const loginGmailInput = document.getElementById("login-gmail");
 
-            // Kayıt ekranını göster
+            // İlk olarak kayıt ekranını göster
             registerContainer.style.display = "block";
 
             // Profil fotoğrafı önizleme
@@ -148,15 +133,26 @@
             document.getElementById("register-form").addEventListener("submit", function (e) {
                 e.preventDefault();
                 const newUsername = document.getElementById("new-username").value;
-                const gmail = gmailInput.value;
+                const gmail = document.getElementById("gmail").value;
                 const newPassword = document.getElementById("new-password").value;
                 const profilePhoto = profilePhotoInput.files[0];
 
-                // Alanları kontrol et
                 if (newUsername && gmail && newPassword && profilePhoto) {
-                    // Kayıt sonrası işlem: Giriş ekranını göster
-                    registerContainer.style.display = "none";  // Kayıt ekranını gizle
-                    loginContainer.style.display = "block";  // Giriş ekranını göster
+                    // menu.html sayfasına yönlendir
+                    window.location.href = "menu.html";
+                }
+            });
+
+            // Giriş formunu gönder
+            document.getElementById("login-form").addEventListener("submit", function (e) {
+                e.preventDefault();
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
+                const loginGmail = document.getElementById("login-gmail").value;
+
+                if (username && password && loginGmail) {
+                    // menu.html sayfasına yönlendir
+                    window.location.href = "menu.html";
                 }
             });
 
