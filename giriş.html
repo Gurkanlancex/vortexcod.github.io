@@ -50,29 +50,6 @@
             background-color: #0056b3;
         }
 
-        .profile-preview {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 10px auto;
-            display: block;
-            border: 2px solid #ddd;
-        }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: #0056b3;
-        }
-
-        #login-container, #register-container {
-            display: none;
-        }
-
         .logo-container {
             position: absolute;
             top: 20px;
@@ -82,10 +59,14 @@
         .logo-container img {
             width: 60px;
             height: 60px;
-            border-radius: 50%;
-            border: 2px solid white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            object-fit: cover;
+            border-radius: 50%; /* Görseli tam yuvarlak yapar */
+            border: 2px solid white; /* Beyaz çerçeve */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+            object-fit: cover; /* Görseli düzgün sığdırır */
+        }
+
+        #login-container, #register-container {
+            display: none;
         }
     </style>
 </head>
@@ -100,8 +81,6 @@
         <div class="form-container">
             <h2>Kayıt Ol</h2>
             <form id="register-form" enctype="multipart/form-data">
-                <img src="placeholder.png" alt="Profil Fotoğrafı" class="profile-preview" id="profile-preview">
-                <input type="file" id="profile-photo" accept="image/*">
                 <input type="text" id="new-username" placeholder="Yeni Kullanıcı Adı" required>
                 <input type="email" id="gmail" placeholder="Gmail Adresi" required>
                 <input type="password" id="new-password" placeholder="Yeni Şifre" required>
@@ -110,90 +89,5 @@
             <p>Zaten hesabınız var mı? <a href="#" id="show-login">Giriş Yapın</a></p>
         </div>
     </div>
-
-    <!-- Giriş Ekranı -->
-    <div id="login-container">
-        <div class="form-container">
-            <h2>Giriş Yap</h2>
-            <form id="login-form">
-                <input type="text" id="username" placeholder="Kullanıcı Adı" required>
-                <input type="email" id="login-gmail" placeholder="Gmail Adresi" required>
-                <input type="password" id="password" placeholder="Şifre" required>
-                <button type="submit" class="btn">Giriş Yap</button>
-            </form>
-            <p>Hesabınız yok mu? <a href="#" id="show-register">Kayıt Olun</a></p>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const registerContainer = document.getElementById("register-container");
-            const loginContainer = document.getElementById("login-container");
-            const showLogin = document.getElementById("show-login");
-            const showRegister = document.getElementById("show-register");
-            const profilePhotoInput = document.getElementById("profile-photo");
-            const profilePreview = document.getElementById("profile-preview");
-
-            // İlk olarak kayıt ekranını göster
-            registerContainer.style.display = "block";
-
-            // Profil fotoğrafı önizleme
-            profilePhotoInput.addEventListener("change", function () {
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        profilePreview.src = e.target.result;
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-
-            // Kayıt formunu gönder
-            document.getElementById("register-form").addEventListener("submit", function (e) {
-                e.preventDefault();
-                const newUsername = document.getElementById("new-username").value;
-                const gmail = document.getElementById("gmail").value;
-                const newPassword = document.getElementById("new-password").value;
-                const profilePhoto = profilePhotoInput.files[0];
-
-                if (newUsername && gmail && newPassword && profilePhoto) {
-                    // menu.html sayfasına yönlendir
-                    window.location.href = "./menu.html"; // Menü sayfasına git
-                } else {
-                    alert("Lütfen tüm alanları doldurun ve bir profil fotoğrafı seçin.");
-                }
-            });
-
-            // Giriş formunu gönder
-            document.getElementById("login-form").addEventListener("submit", function (e) {
-                e.preventDefault();
-                const username = document.getElementById("username").value;
-                const password = document.getElementById("password").value;
-                const loginGmail = document.getElementById("login-gmail").value;
-
-                if (username && password && loginGmail) {
-                    // menu.html sayfasına yönlendir
-                    window.location.href = "./menu.html";
-                } else {
-                    alert("Lütfen tüm alanları doldurun.");
-                }
-            });
-
-            // Giriş ekranına geçiş
-            showLogin.addEventListener("click", function (e) {
-                e.preventDefault();
-                registerContainer.style.display = "none";
-                loginContainer.style.display = "block";
-            });
-
-            // Kayıt ekranına geçiş
-            showRegister.addEventListener("click", function (e) {
-                e.preventDefault();
-                loginContainer.style.display = "none";
-                registerContainer.style.display = "block";
-            });
-        });
-    </script>
 </body>
 </html>
