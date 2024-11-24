@@ -79,7 +79,12 @@
             color: #b9bbbe;
         }
 
-        /* Other styles for the menu (buttons, layout, etc.) */
+        .clock {
+            color: #b9bbbe;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -107,6 +112,9 @@
                 <strong>Ayarlar:</strong> Ayarları düzenleyin.
             </div>
         </div>
+
+        <!-- Saat -->
+        <div class="clock" id="clock"></div>
     </div>
 
     <script>
@@ -114,6 +122,18 @@
         function updateUsername(username) {
             document.getElementById('username').textContent = username;
         }
+
+        // Saat Güncelleme Fonksiyonu
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}`;
+        }
+
+        // Saatin Her Dakika Güncellenmesi
+        setInterval(updateClock, 60000);
+        updateClock();
 
         // Örnek olarak kullanıcı adı "Ahmet" olarak güncelleniyor
         updateUsername('Ahmet');
