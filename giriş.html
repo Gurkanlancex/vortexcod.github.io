@@ -139,7 +139,9 @@
 
                 if (newUsername && gmail && newPassword && profilePhoto) {
                     // menu.html sayfasına yönlendir
-                    window.location.href = "menu.html";
+                    window.location.href = "./menu.html"; // Menü sayfasına git
+                } else {
+                    alert("Lütfen tüm alanları doldurun ve bir profil fotoğrafı seçin.");
                 }
             });
 
@@ -152,7 +154,9 @@
 
                 if (username && password && loginGmail) {
                     // menu.html sayfasına yönlendir
-                    window.location.href = "menu.html";
+                    window.location.href = "./menu.html";
+                } else {
+                    alert("Lütfen tüm alanları doldurun.");
                 }
             });
 
